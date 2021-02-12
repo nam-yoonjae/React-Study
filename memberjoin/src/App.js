@@ -10,17 +10,68 @@ const App = () => {
   const [marry, setMarry] = useState(false);
   const [hobby, setHobby] = useState("선택");
   const [date, setDate] = useState();
+  const [isPlusJumin, setIsPlusJumin] = useState(true);
+  const [isPlusPhone, setIsPlusPhone] = useState(true);
 
 
 const setNameText = e => {
   setName(e.target.value);
 };
 const setJuminText = e => {
-  setJumin(e.target.value);
+  if(e.target.value.length === 15) {
+    return;
+  }
+  if(
+    (e.target.value.length === 6 && isPlusJumin) ||
+    (e.target.value.length === 7 && !e.target.value.include("-"))
+  ){
+    setJumin(
+      e.target.value.substring(0, 6) + "-" + e.target.value.substring(6)
+    );
+    setIsPlusJumin(false);
+  } else {
+    if(e.target.value.length < 6 ) {
+      setIsPlusJumin(true);
+    }
+    setJumin(e.target.value);
+  }
 };
+
 const setPhoneNumText = e => {
-  setPhoneNum(e.target.value);
+  if(e.target.value.length === 14 ) {
+    return;
+  }
+  console.log(e.target.value);
+  console.log(e.target.value.length);
+  console.log(isPlusPhone);
+
+  if(e.target.value.length < 3) {
+    setIsPlusPhone(true);
+  }
+  if(e.target.value.length === 3 && isPlusPhone) {
+    setPhoneNum(e.target.value + "-");
+    setIsPlusPhone(false);
+  } else if (e.target.value.length === 4 && !e.target.value.include("-")){
+    setPhoneNum(
+      e.target.value.substring(0,3) + "-" + e.target.value.substring(3)
+    );
+  } else if (e.target.value.length === 8 ){
+    if(e.target.value.match(/-/g).length === 1 && isPlusPhone){
+      setPhoneNum(e.target.value);
+      setIsPlusPhone(false);
+    } else {
+      setPhoneNum(e.target.value+"-");
+      setIsPlusPhone(true);
+    }
+  } else if (e.target.value.length === 9 && !isPlusPhone){
+    setPhoneNum(
+      e.target.value.substring(0,8) + "-" + e.target.value.substring(8)
+    );
+  } else {
+    setPhoneNum(e.target.value);
+  }
 };
+
 const setMarryText = e => {
   setMarry(e.target.value);
 };
@@ -32,7 +83,21 @@ const setDateText = e => {
 };
 const save = e => {
   e.preventDefault();
+  const isKorean = /[A-Za-z0-9]/;
+  const isNumber = /[0-9]/;
+  const isPhoneNumber = /[]/;
+
+  if(isKorean.test(name)){
+    alert("이름을 다시 확인하세요.");
+  } else if (!isNumber.test(jumin) || jumin.length !== 14) {
+    alert("주민등록번호를 (-)를 포함하여 입력해주세요. \n ex)891107-1065418");
+  } else if (!isNumber.test(phoneNum) || phoneNum.length !== 13) {
+    alert("휴대폰 번호를 (-)를 포함하여 입력해주세요. \n ex)010-1234-5678");
+  }
+
 };
+
+
 
 return (
   <>
