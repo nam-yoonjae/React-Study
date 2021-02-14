@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Hello from './Hello';
 import Wrapper from './Wrapper';
 import Counter from './Counter';
+import InputSample from './InputSample';
+import InputSample2 from './InputSample2';
 import "./App.css";
 
 function App() {
@@ -36,7 +38,14 @@ function App() {
             <h3>버튼 +1, -1 렌더링 예제</h3>
             <Counter/>
           </div>
-          
+          <div>
+            <h3>input 예제1</h3>
+            <InputSample/>
+          </div>
+          <div>
+            <h3>input 예제2</h3>
+            <InputSample2/>
+          </div>
       </div>
     </>
   );
