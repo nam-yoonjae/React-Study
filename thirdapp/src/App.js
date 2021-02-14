@@ -5,6 +5,7 @@ import Counter from './Counter';
 import InputSample from './InputSample';
 import InputSample2 from './InputSample2';
 import FocusSample from './FocusSample';
+import UserList from './UserList';
 import "./App.css";
 
 function App() {
@@ -50,6 +51,10 @@ function App() {
           <div>
             <h3>focus 예제</h3>
             <FocusSample/>
+          </div>
+          <div>
+            <h3>배열 예제</h3>
+            <UserList/>
           </div>
       </div>
     </>
