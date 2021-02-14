@@ -3,11 +3,11 @@ import React, {useState} from 'react';
 function InputSample2 () {
 
     const [inputs, setInputs] = useState({
-        name : ''
+        username : ''
         , nickname : ''
     });
  
-    const {name, nickname} = inputs;
+    const {username, nickname} = inputs;
 
     const onChange = (e) => {
         const {value, name} = e.target;
@@ -19,7 +19,7 @@ function InputSample2 () {
 
     const onReset = () => {
         setInputs({
-            name : ''
+            username : ''
             , nickname : ''
         });
     }
@@ -27,12 +27,12 @@ function InputSample2 () {
     return (
         <>
             <div>
-                <input name="name" onChange={onChange} placeholder="이름"/>
-                <input name="nickname" onChange={onChange} placeholder="닉네임"/>
+                <input name="username" onChange={onChange} value={username} placeholder="이름"/>
+                <input name="nickname" onChange={onChange} value={nickname} placeholder="닉네임"/>
                 <button onClick={onReset}>초기화</button>
                 <div>
                     <b>값 : </b>
-                    <span>{name}({nickname})</span>
+                    <span>{username}({nickname})</span>
                 </div>
             </div>
 
